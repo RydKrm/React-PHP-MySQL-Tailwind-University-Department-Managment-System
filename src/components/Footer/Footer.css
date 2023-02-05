@@ -1,0 +1,12 @@
+.logo-container{
+  height: 80px;
+  width: 80px;
+}
+
+.footer-container{
+ background-color: lightgray;
+}
+
+.copyright-color{
+    background-color: rgba(0, 0, 0, 0.2);
+}
