@@ -1,21 +1,20 @@
 import './PresentSystem.css';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import TablePresent from './TablePresent';
+import SubmitButton from '../Common/SubmitButton';
 
 const PresentSystem = () => {
-
-  
   const [course, setCourse] = useState([]);
   const [message, setMessage] = useState("");
   const [select_course, set_select_course] = useState({});
   const [students, setStudent] = useState([]);
   const [is_student, set_is_students] = useState(false);
 
-   const obj = JSON.parse(localStorage.getItem("ICE_dept"));
-   const teacher_id = obj.id;
+  const obj = JSON.parse(localStorage.getItem("ICE_dept"));
+  const teacher_id = obj.id;
   const getCourse = () => {
-    axios
-      .post(`http://localhost/dept_project/get_course.php`, teacher_id)
+    axios.post(`http://localhost/dept_project/get_course.php`, teacher_id)
       .then((res) => {
         if (res.data.success) {
           setCourse(res.data.course_list.all_data);
@@ -38,8 +37,8 @@ const PresentSystem = () => {
     event.preventDefault();
     event.persist();
    // console.log(select_course);
-    axios
-      .post(
+   
+    axios.post(
         `http://localhost/dept_project/present_system_get_all_student.php`,
         select_course
       )
@@ -56,18 +55,10 @@ const PresentSystem = () => {
       });
   };
 
- console.log("IS STudent => ", is_student);
-
   const onMarkSubmit = () => {
     axios
       .post(`http://localhost/dept_project/present_adding.php`, students)
       .then((res) => {
-
-       // console.log("check for success => ",res.data);
-      //  console.log("CT Mark added");
-      //  if (res.data.success) { 
-     //   }
-
          set_is_students(false);
         setMessage("Mark added!!");
       });
@@ -128,70 +119,19 @@ const PresentSystem = () => {
                   </div>
 
                   <div></div>
-                  <input
-                    className="btn btn-danger btn-lg font-roboto text-lg font-dark text-white
-                           hover:ring-1 duration-200 hover:bg-slate-800 hover:delay-800"
-                    type="submit"
-                    value="submit"
-                  />
+                  <SubmitButton
+                    ButtonHandle={onFormSubmit}
+                    ButtonValue={"Submit"}
+                  ></SubmitButton>
                 </form>
 
                 <h2>{message}</h2>
-                {is_student === true && (
-                  <div className="overflow-x-auto mt-5">
-                    <table className="w-full text-left text-gray-500 dark:text-gray-400 text-lsm font-roboto ">
-                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                          <th className="w-2/5">Name</th>
-                          <th className="w-1/5">Roll number</th>
-                          <th className="w-1/5">present</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {students.map((std, index) => (
-                          <tr className="border-2 border-slate-200" key={index}>
-                            <td>
-                              {std.first_name} {std.last_name}
-                            </td>
-                            <td>{std.roll_number}</td>
-                            <td>
-                              {std.is_present === "not present" && (
-                                <button
-                                  name="marks"
-                                  className="btn bg-rose-500 ring-1 border-white"
-                                  onClick={() =>
-                                    present_adding(std.student_id, "present")
-                                  }
-                                >
-                                  {std.is_present}
-                                </button>
-                              )}
-                              {std.is_present === "present" && (
-                                <button
-                                  name="marks"
-                                  className="btn btn-success text-white"
-                                  onClick={() =>
-                                    present_adding(
-                                      std.student_id,
-                                      "not present"
-                                    )
-                                  }
-                                >
-                                  {std.is_present}
-                                </button>
-                              )}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    <input
-                      className="btn btn-danger btn-lg mt-5"
-                      type="submit"
-                      value="submit"
-                      onClick={onMarkSubmit}
-                    />
-                  </div>
+                {is_student && (
+                  <TablePresent
+                    present_adding={present_adding}
+                    onMarkSubmit={onMarkSubmit}
+                    students={students}
+                  ></TablePresent>
                 )}
               </div>
             </div>
@@ -203,5 +143,3 @@ const PresentSystem = () => {
 };
 
 export default PresentSystem;
-
-

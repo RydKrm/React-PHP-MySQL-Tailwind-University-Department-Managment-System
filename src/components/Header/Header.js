@@ -105,9 +105,6 @@ useEffect(container,[]);
                       Class Tests Marks
                     </NavLink>
                   )}
-                  <NavLink class=" nav-item nav-link btn btn-primary">
-                    Get started
-                  </NavLink>
                 </div>
               </div>
             </div>

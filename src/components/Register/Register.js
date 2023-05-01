@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 // import useNavigate from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import SelectOption from '../Common/Select_option/SelectOption';
+import SubmitButton from '../Common/SubmitButton';
 
 const Register = () => {
     const [userRole,setRole] = useState('teacher');
@@ -21,7 +23,6 @@ const Register = () => {
     const onClickChange = (event)=>{ 
       setRole(event.target.value); 
       userInfo.role = event.target.value;
-
     }
 
     const onSubmitChange=(event)=>{
@@ -33,8 +34,7 @@ const Register = () => {
         return;
       }
 
-      axios
-        .post(`http://localhost/dept_project/register.php`, userInfo)
+      axios.post(`http://localhost/dept_project/register.php`, userInfo)
         .then((res) => {
           console.log(res.data);
           // setUserInfo({});
@@ -172,7 +172,7 @@ const Register = () => {
                         </div>
                       </div>
                       {/* conditional rendering */}
-                      {userRole === "student" ? (
+                      {userRole === "student"&&
                         <div className="row">
                           <div className="col-md-6 mb-4 pb-2">
                             <div className="form-outline">
@@ -188,46 +188,35 @@ const Register = () => {
                             </div>
                           </div>
                           <div className="col-md-6 mb-4 pb-2">
-                            <select
-                              className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                              name="year"
-                              onChange={onBlurChange}
-                            >
-                              <option>Select Year </option>
-                              <option value="1">First Year</option>
-
-                              <option value="2">Second Year</option>
-
-                              <option value="3"> Third Year </option>
-
-                              <option value="4"> Fourth Year</option>
-                            </select>
+                            <SelectOption
+                              handle_option={onBlurChange}
+                              name={"year"}
+                              options={[
+                                ["1", "First Year"],
+                                ["2", "Second Year"],
+                                ["3", "Third Year"],
+                                ["4", "fourth Year"],
+                              ]}
+                              >
+                            </SelectOption>
                           </div>
                           <div className="col-md-6 mb-4 pb-2">
-                            <select
-                              className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                              name="semester"
-                              onChange={onBlurChange}
-                            >
-                              <option> Select semester </option>
-                              <option value="odd">Odd</option>
-                              <option value="even">Even</option>
-                            </select>
+                            <SelectOption
+                              handle_option={onBlurChange}
+                              name={"semester"}
+                              options={[
+                                ["odd", "Odd"],
+                                ["even", "Even"],
+                              ]}
+                            ></SelectOption>
                           </div>
                         </div>
-                      ) : (
-                        <div></div>
-                      )}
+                      }
 
                       <div className="mt-4 pt-2">
-                        <input
-                          className="btn btn-info btn-lg font-roboto text-lg font-light text-white
-                           hover:ring-1 duration-200 hover:bg-sky-500 hover:delay-800"
-                          type="submit"
-                          value="Register"
-                        />
+
+                        <SubmitButton ButtonHandle={onSubmitChange} 
+                        ButtonValue={"Register"}></SubmitButton>
                         <h2>{message}</h2>
                       </div>
                     </form>

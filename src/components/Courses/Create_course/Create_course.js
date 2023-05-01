@@ -1,6 +1,7 @@
 import './Create_course.css';
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+import SubmitButton from '../../Common/SubmitButton';
 
 const Create_course = () => {
     const [message,setMessage] = useState('');
@@ -183,12 +184,11 @@ const Create_course = () => {
                       </div>
 
                       <div className="mt-4 pt-2">
-                        <input
-                          className="btn btn-info btn-lg font-roboto text-lg font-light text-white
-                           hover:ring-1 duration-200 hover:bg-sky-500 hover:delay-800"
-                          type="submit"
-                          value="Register"
-                        />
+                        <SubmitButton
+                         // ButtonHandle={onFormSubmit}
+                          ButtonValue={"Create"}
+                        ></SubmitButton>
+
                         <h2>{message}</h2>
                       </div>
                     </form>

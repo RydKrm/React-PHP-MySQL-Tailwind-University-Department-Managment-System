@@ -18,7 +18,7 @@ const Login = () => {
     event.persist();
      axios.post(`http://localhost/dept_project/login.php`, login_data)
        .then((res) => {
-        if (res.data.success) {
+        if(res.data.success){
           set_user(res.data.student_list);
           set_is_message(true);
         // navigate('/home')

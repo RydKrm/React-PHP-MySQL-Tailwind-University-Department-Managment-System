@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import ClassTestTable from './ClassTestTable';
 
 const Class_Test = () => {
  
@@ -159,46 +160,12 @@ const onFormSubmit =(event)=>{
                   </form>
 
                   <h2>{message}</h2>
-                  {is_student === true ? (
-                    <div className="overflow-x-auto mt-5">
-                      <table className="w-full text-left text-gray-500 dark:text-gray-400 text-lg">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                          <tr>
-                            <th className="w-2/5">Name</th>
-                            <th className="w-1/5" >Roll number</th>
-                            <th className="w-1/5">Mark</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {students.map((std, index) => (
-                            <tr key={index} className='border-2 border-slate-200'>
-                              <td >
-                                {std.first_name} {std.last_name}
-                              </td>
-                              <td>{std.roll_number}</td>
-                              <td>
-                                <input
-                                  type="text"
-                                  name="marks"
-                                  placeholder='Mark'
-                                  className="form-control form-control-lg input-bordered text-sm hover:ring-1 hover:border-sky-500"
-                                  onBlur={(event) => mark_adding(event, index)}
-                                />
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      <input
-                        className="btn btn-info btn-lg font-roboto text-lg font-light text-white
-                           hover:ring-1 duration-200 hover:bg-sky-500 hover:delay-800 mt-5"
-                        type="submit"
-                        value="submit"
-                        onClick={onMarkSubmit}
-                      />
-                    </div>
-                  ) : (
-                    <span> </span>
+                  {is_student && (
+                    <ClassTestTable
+                      mark_adding={mark_adding}
+                      students={students}
+                      onMarkSubmit={onMarkSubmit}
+                    ></ClassTestTable>
                   )}
                 </div>
               </div>

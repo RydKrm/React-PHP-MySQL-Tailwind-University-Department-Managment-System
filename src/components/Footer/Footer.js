@@ -1,14 +1,15 @@
 import './Footer.css';
 import React from 'react';
-import logo from '../../img/logo.png'
 import { NavLink } from 'react-router-dom';
+/*
+import logo from '../../img/logo.png'
 import { BsAlarmFill, BsAlignTop, BsFacebook } from "react-icons/bs";
 import { FaAddressBook } from "react-icons/fa";
-
+*/
 const Footer = () => {
     return (
       <div className="footer-container bg-slate-300 font-roboto">
-        <div className="container ">
+        {/* <div className="container ">
           <div className="row">
             <div className="col-md-3 my-3">
               <img
@@ -66,12 +67,12 @@ const Footer = () => {
 
             <div className="col-md-3 my-3">
               <h3>Social</h3>
-            </div>
+            </div> */}
 
             {/* CopyRight Bar  */}
-          </div>
-        </div>
-        <div className="text-center text-dark p-3 copyright-color">
+          {/* </div>
+        </div> */}
+        <div className="text-center text-dark p-3 copyright-color bottom-0">
           © 2022 Copyright:
           <NavLink className="text-dark" to="/home">
             ICE, RU{" "}

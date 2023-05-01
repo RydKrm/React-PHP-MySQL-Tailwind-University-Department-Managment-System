@@ -2,6 +2,9 @@ import './MyClassTestMarks.css';
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SelectOption from '../Common/Select_option/SelectOption';
+import ClassTestTable from './ClassTestTable';
+import SubmitButton from '../Common/SubmitButton';
 
 const MyClassTestMarks = () => {
   const [course, set_Course] = useState([]);
@@ -66,8 +69,7 @@ const MyClassTestMarks = () => {
   const on_course_submit = (event) => {
     event.preventDefault();
     event.persist();
-    axios
-      .post(
+    axios.post(
         `http://localhost/dept_project/select_my_all_ct_marks.php`,
         select_course
       )
@@ -101,31 +103,28 @@ const MyClassTestMarks = () => {
                   <div className="row">
                     <div className="col-md-6 mb-6 d-flex align-items-center">
                       <div className="form-outline datepicker w-100">
-                        <select
-                          name="year"
-                          onChange={on_year_select}
-                          className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                        >
-                          <option value="">Select Course </option>
-                          <option value="1">First Year </option>
-                          <option value="2">Second Year </option>
-                          <option value="3">Third Year </option>
-                          <option value="4">Fourth Year </option>
-                        </select>
+                        <SelectOption
+                          handle_option={on_year_select}
+                          name={"year"}
+                          options={[
+                            ["1", "First Year"],
+                            ["2", "Second Year"],
+                            ["3", "Third Year"],
+                            ["4", "fourth Year"],
+                          ]}
+                        ></SelectOption>
                       </div>
                     </div>
                     <div className="col-md-6 mb-6 d-flex align-items-center">
                       <div className="form-outline datepicker w-100">
-                        <select
-                          name="semester"
-                          onChange={on_semester_select}
-                          className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                        >
-                          <option value="odd">Odd </option>
-                          <option value="even">Even </option>
-                        </select>
+                        <SelectOption
+                          handle_option={on_semester_select}
+                          name={"semester"}
+                          options={[
+                            ["odd", "Odd"],
+                            ["even", "Even"],
+                          ]}
+                        ></SelectOption>
                       </div>
                     </div>
 
@@ -149,42 +148,15 @@ const MyClassTestMarks = () => {
                       </div>
                     )}
                   </div>
-                  <input
-                    className="btn btn-info btn-lg font-roboto text-lg font-light text-white
-                           hover:ring-1 duration-200 hover:bg-sky-500 hover:delay-800"
-                    type="submit"
-                    value="submit"
-                    onClick={on_course_submit}
-                  />
+                  <SubmitButton 
+                  ButtonHandle={on_course_submit} 
+                  ButtonValue={"Submit"}>                 
+                  </SubmitButton>
                 </form>
 
                 <h2>{message}</h2>
-
                 {is_ct && (
-                  <div className="overflow-x-auto mt-5">
-                    <table className="w-full text-left text-gray-500 dark:text-gray-400 text-lg">
-                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                          <th className="w-1/6"> Course Name</th>
-                          <th className="w-1/6">Course Section</th>
-                          <th className="w-1/6">CT Number</th>
-                          <th className="w-1/6">Total mark</th>
-                          <th className="w-1/6">My Mark</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {class_test.map((ct, index) => (
-                          <tr key={index} className="border-2 border-slate-200">
-                            <td>{ct.course_name}</td>
-                            <td>{ct.course_section}</td>
-                            <td>{ct.class_test_number}</td>
-                            <td>{ct.total_mark}</td>
-                            <td>{ct.mark}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <ClassTestTable class_test={class_test}></ClassTestTable>
                 )}
               </div>
             </div>

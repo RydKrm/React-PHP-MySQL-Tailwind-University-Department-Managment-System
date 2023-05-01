@@ -1,9 +1,10 @@
 import './MyPresents.css';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SelectOption from '../Common/Select_option/SelectOption';
+import TablePresent from './TablePresent';
 
 const MyPresents = () => {
-    
   const [course, set_Course] = useState([]);
   const [message, setMessage] = useState("");
   const [select_course, set_select_course] = useState({});
@@ -11,19 +12,11 @@ const MyPresents = () => {
   const [present, set_present] = useState([]);
   const [is_present,set_is_present] = useState(false);
   const[course_name,set_course_name] = useState('');
-
-
-
-
-
   const on_year_select = (event) => {
     set_select_course((values) => ({ ...values, [event.target.name]: event.target.value }));
   };
-
-
  const get_course = ()=>{
-     axios
-      .post(
+     axios.post(
         `http://localhost/dept_project/my_present_get_course.php`,
         select_course
       )
@@ -46,10 +39,6 @@ const MyPresents = () => {
   }
 
     useEffect(get_course,[select_course]);
-
- //console.log("Selected Course",select_course);
-
-
   const on_course_select = (event)=>{
      set_select_course((values) => ({
        ...values,
@@ -81,58 +70,52 @@ const MyPresents = () => {
     })
   }
 
-
-
-
   return (
-    <section className="vh-100 gradient-custom">
-      <div className="container py-5 h-100">
-        <div className="row justify-content-center align-items-center h-100">
+    <section className="gradient-custom min-h-screen">
+      <div className="container py-5">
+        <div className="row justify-content-center align-items-center">
           <div className="col-12 col-lg-9 col-xl-7">
             <div className="card shadow-2-strong card-registration">
               <div className="card-body p-4 p-md-5">
                 <h3
                   className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
-                     text-4xl font-roboto font-normal animate-bounce "
-                >
+                     text-4xl font-roboto font-normal ">
                   Present System
                 </h3>
                 <form>
                   <div className="row">
                     <div className="col-md-6 mb-6 d-flex align-items-center">
                       <div className="form-outline datepicker w-100">
-                        <select
-                          name="year"
-                          onChange={on_year_select}
-                          className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                        >
-                          <option>Select Course </option>
-                          <option value="1">First Year </option>
-                          <option value="2">Second Year </option>
-                          <option value="3">Third Year </option>
-                          <option value="4">Fourth Year </option>
-                        </select>
+                        <SelectOption
+                          handle_option={on_year_select}
+                          name={"year"}
+                          options={[
+                            ["1", "first year"],
+                            ["2", "second year"],
+                            ["3", "third year"],
+                            ["4", "fourth year"],
+                          ]}
+                        ></SelectOption>
                       </div>
                     </div>
                     <div className="col-md-6 mb-6 d-flex align-items-center">
                       <div className="form-outline datepicker w-100">
-                        <select
-                          name="semester"
-                          onChange={on_semester_select}
-                          className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                        >
-                          <option value="">Select Course </option>
-                          <option value="odd">Odd </option>
-                          <option value="even">Even </option>
-                        </select>
+                        <SelectOption
+                          handle_option={on_semester_select}
+                          name={"semester"}
+                          options={[
+                            ["odd", "Odd"],
+                            ["even", "Even"],
+                          ]}
+                        ></SelectOption>
                       </div>
                     </div>
 
                     {have_course && (
                       <div className="col-md-6 mb-6 d-flex align-items-center">
                         <div className="form-outline datepicker w-100">
+                          <div className="form-outline datepicker w-100">
+                          </div>
                           <select
                             name="course"
                             onChange={on_course_select}
@@ -153,21 +136,18 @@ const MyPresents = () => {
                     {have_course && (
                       <div className="col-md-6 mb-6 d-flex align-items-center">
                         <div className="form-outline datepicker w-100">
-                          <select
-                            name="section"
-                            onChange={on_year_select}
-                            className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                          >
-                            <option value="">Select section </option>
-                            <option value="a"> Section A</option>
-                            <option value="b">Section B</option>
-                          </select>
+                         <SelectOption
+                          handle_option={on_year_select}
+                          name={"section"}
+                          options={[
+                            ["a", "Section A"],
+                            ["b", "Section B"],
+                          ]}
+                        ></SelectOption>
                         </div>
                       </div>
                     )}
                   </div>
-
                   <input
                     className="btn btn-info btn-lg font-roboto text-lg font-light text-white
                            hover:ring-1 duration-200 hover:bg-sky-500 hover:delay-800"
@@ -176,31 +156,11 @@ const MyPresents = () => {
                     onClick={on_course_submit}
                   />
                 </form>
-
                 <h2>{message}</h2>
-
-                {is_present && (
-                  <div className="overflow-x-auto mt-5">
-                    <table className="w-full text-left text-gray-500 dark:text-gray-400 text-lg">
-                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                          <th className="w-1/4">Name</th>
-                          <th className="w-1/4">Date</th>
-                          <th className="w-1/4">present</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {present.map((pre, index) => (
-                          <tr key={index} className="border-2 border-slate-200">
-                            <td>{course_name}</td>
-                            <td>{pre.present_date}</td>
-                            <td>{pre.is_present}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
+                {is_present && <TablePresent 
+                course_name={course_name}
+                present={present}
+                ></TablePresent>}
               </div>
             </div>
           </div>
