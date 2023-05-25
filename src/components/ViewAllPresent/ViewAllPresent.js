@@ -1,10 +1,10 @@
-import './PresentSystem.css';
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import TablePresent from './TablePresent';
+import React, { useEffect, useState } from 'react';
 import SubmitButton from '../Common/SubmitButton';
+import axios from 'axios';
+import AllPresentTable from './AllPresentTable';
 
-const PresentSystem = () => {
+const ViewAllPresent = () => {
+   
   const [course, setCourse] = useState([]);
   const [message, setMessage] = useState("");
   const [select_course, set_select_course] = useState({});
@@ -14,7 +14,8 @@ const PresentSystem = () => {
   const obj = JSON.parse(localStorage.getItem("ICE_dept"));
   const teacher_id = obj.id;
   const getCourse = () => {
-    axios.post(`http://localhost/dept_project/get_course.php`, teacher_id)
+    axios
+      .post(`http://localhost/dept_project/get_course.php`, teacher_id)
       .then((res) => {
         if (res.data.success) {
           setCourse(res.data.course_list.all_data);
@@ -32,15 +33,18 @@ const PresentSystem = () => {
     set_select_course((values) => ({ ...values, teacher_id: teacher_id }));
   };
 
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     event.persist();
-    axios.post(`http://localhost/dept_project/present_system_get_all_student.php`,
-        select_course
+     console.log(select_course)
+    axios
+      .post(
+        `http://localhost/dept_project/view_all_presents(teacher).php`,
+        select_course,
+        { mode: "cors" }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log("All students", res.data);
         if (res.data.success) {
           setStudent(res.data.student_list.all_data);
           set_is_students(true);
@@ -50,30 +54,6 @@ const PresentSystem = () => {
       });
   };
 
-  const onMarkSubmit = () => {
-    axios
-      .post(`http://localhost/dept_project/present_adding.php`, students)
-      .then((res) => {
-         set_is_students(false);
-        setMessage("Mark added!!");
-      });
-  };
-
- const present_adding = (id, present) => {
-   const next_student = students.map(std => {
-     if(std.student_id===id){
-       return {
-        ...std, is_present : present,
-       };
-     } else 
-      return std;
-    }
-   );
-   setStudent(next_student);
-  };
-
- // console.log("All students", students);
-
   return (
     <section className="vh-100 gradient-custom">
       <div className="container py-5 h-100">
@@ -81,12 +61,9 @@ const PresentSystem = () => {
           <div className="col-12 col-lg-9 col-xl-7">
             <div className="card shadow-2-strong card-registration">
               <div className="card-body p-4 p-md-5">
-                <h3
-                  className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
-                     text-4xl font-roboto font-normal animate-bounce "
-                >
-                  Present System
-                </h3>
+                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
+                     text-4xl font-roboto font-normal" >
+                  All Presents </h3>
                 <form method="post" onSubmit={onFormSubmit}>
                   <div className="row">
                     <div className="col-md-3"></div>
@@ -122,11 +99,9 @@ const PresentSystem = () => {
 
                 <h2>{message}</h2>
                 {is_student && (
-                  <TablePresent
-                    present_adding={present_adding}
-                    onMarkSubmit={onMarkSubmit}
+                  <AllPresentTable
                     students={students}
-                  ></TablePresent>
+                  ></AllPresentTable>
                 )}
               </div>
             </div>
@@ -137,4 +112,5 @@ const PresentSystem = () => {
   );
 };
 
-export default PresentSystem;
+export default ViewAllPresent;
+<h2>All Present viewer</h2>

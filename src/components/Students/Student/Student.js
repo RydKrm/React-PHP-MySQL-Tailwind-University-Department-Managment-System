@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Student = (props) => {
   const { first_name, last_name, email, image,year,project,city } = props.student;
@@ -17,6 +18,8 @@ const Student = (props) => {
           <li className="list-group-item">Year : {year} </li>
           <li className="list-group-item">Project: {project}</li>
           <li className="list-group-item">City : {city} </li>
+          <li className="list-group-item"><NavLink to="/profile_single"
+           className="btn btn-primary">Visit Profile</NavLink></li>
         </ul>
       </div>
     </div>

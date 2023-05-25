@@ -1,7 +1,6 @@
 import './Register.css';
 import React, { useState } from 'react';
 import axios from 'axios';
-// import useNavigate from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import SelectOption from '../Common/Select_option/SelectOption';
 import SubmitButton from '../Common/SubmitButton';
@@ -14,9 +13,7 @@ const Register = () => {
   const navigate = useNavigate();
 
     const onBlurChange=(event)=>{
-        //console.log('Change update');
         setUserInfo(values =>({...values,[event.target.name]:event.target.value}));
-       // console.log(userInfo);
     }
 
 
@@ -44,6 +41,8 @@ const Register = () => {
          // navigate('/home');
           return;
         });
+
+
     }
 
     return (
@@ -54,12 +53,9 @@ const Register = () => {
               <div className="col-12 col-lg-9 col-xl-7">
                 <div className="card shadow-2-strong card-registration">
                   <div className="card-body p-4 p-md-5">
-                    <h3
-                      className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
+                    <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
                      text-4xl font-roboto font-normal animate-bounce "
-                    >
-                      Registration Form
-                    </h3>
+                    > Registration Form </h3>
                     <form onSubmit={onSubmitChange} method="post">
                       <div className="row">
                         {/* First Name */}
@@ -214,7 +210,6 @@ const Register = () => {
                       }
 
                       <div className="mt-4 pt-2">
-
                         <SubmitButton ButtonHandle={onSubmitChange} 
                         ButtonValue={"Register"}></SubmitButton>
                         <h2>{message}</h2>

@@ -1,14 +1,16 @@
 import './Login.css';
-import React,{useEffect, useState} from 'react';
-import { useNavigate} from "react-router-dom";
+import React,{useContext, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
+import { UserContext } from '../../App';
 
 const Login = () => {
-   const [user,set_user] = useState({});
    //const [is_log,set_is_log] = useState(false);
    const [is_message,set_is_message] = useState(false);
    const [login_data,set_login_data] = useState({});
    //const [message,setMessage] = useState('');
+   const [checkUser, setCheckUser] = useContext(UserContext);
+
    const navigate = useNavigate();
    const onChangeItem= (event)=>{
        set_login_data(values=>({...values,[event.target.name]:event.target.value})); 
@@ -19,9 +21,13 @@ const Login = () => {
      axios.post(`http://localhost/dept_project/login.php`, login_data)
        .then((res) => {
         if(res.data.success){
-          set_user(res.data.student_list);
           set_is_message(true);
-        // navigate('/home')
+          setCheckUser({ userRole: res.data.student_list.role });
+          localStorage.setItem(
+            "ICE_dept",
+            JSON.stringify(res.data.student_list)
+          );
+           navigate('/home')
         } else {
           set_is_message(false);
         }
@@ -29,16 +35,6 @@ const Login = () => {
          return;
        });
   }
- 
-
-
- const call_is_log = ()=>{
-   localStorage.setItem("ICE_dept", JSON.stringify(user));
- }
-  useEffect(call_is_log,[user]);
-  
-
-   //console.log("User logged in data", user);
 
     return (
       <div>

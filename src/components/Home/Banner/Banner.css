@@ -1,0 +1,20 @@
+   #intro-example {
+       height: 400px;
+       background-image: linear-gradient(rgba(34, 38, 41, .9), rgba(34, 38, 41, .9)), url(../../../img/ru1.jpg);
+       background-repeat: no-repeat;
+       background-size: cover;
+       z-index: 15;
+   }
+
+   /* Height for devices larger than 992px */
+   @media (min-width: 992px) {
+       #intro-example {
+           height: 600px;
+       }
+
+   }
+
+   .hero_color {
+       background-color: 222629;
+       opacity: 0.7;
+   }

@@ -1,10 +1,13 @@
 import './Profile.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Profile = () => {
+  const [checkUser, setCheckUser] = useContext(UserContext);
     const navigate = useNavigate();
     const onLogOut = ()=>{
+        setCheckUser({userRole:"none"});
         localStorage.removeItem("ICE_dept");
         navigate('/home');
     } 

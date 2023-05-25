@@ -1,40 +1,19 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useContext} from 'react';
 import { NavLink } from'react-router-dom';
 import './Header.css';
+import { UserContext } from '../../App';
 
 const Header = () => {
- const [is_logged_in,set_is_log_in] = useState(false);
- const [user_role,set_user_role] = useState('');
 
-const container = ()=>{
-  if(localStorage.getItem("ICE_dept")){
-   set_is_log_in(true);
-     if(localStorage.ICE_dept){
-      var obj = JSON.parse(localStorage.getItem("ICE_dept"));
-    const is_role = obj.role;
-     if ( is_role === "teacher"){
-      set_user_role("teacher");
-     } else if(is_role==='student'){
-      set_user_role("student");
-     }
-     }
-   
-  } else {
-    set_is_log_in(false);
-  }
-}
-
-useEffect(container,[]);
-//  console.log("USER ROLE =>",user_role);
-
+ const [checkUser, setCheckUser] = useContext(UserContext);
+ const userRole = checkUser.userRole;
   
     return (
       <div>
         {
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg bg-black">
             <div className="container">
-              <NavLink className="navbar-brand text-primary" to="/home">
+              <NavLink className="navbar-brand text-green text-2xl font-roboto" to="/home">
                 ICE
               </NavLink>
               <button
@@ -50,57 +29,70 @@ useEffect(container,[]);
               </button>
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                  <NavLink className="nav-item nav-link active" to="/home">
+                  <NavLink className="nav-item nav-link active font-oxygen" to="/home">
                     Home
                   </NavLink>
-                  <NavLink className="nav-item nav-link" to="/teachers">
-                    Teachers
-                  </NavLink>
-                  <NavLink className="nav-item nav-link" to="/students">
+                  {userRole === "admin" && (
+                    <NavLink className="nav-item nav-link bg-green " to="/teachers">
+                      Teachers
+                    </NavLink>
+                  )}
+                  
+                  {userRole==="admin" && <NavLink className="nav-item nav-link" to="/students">
                     Students
-                  </NavLink>
-                  <NavLink className="nav-item nav-link" to="/courses">
+                  </NavLink> }
+                 {userRole==="admin" && <NavLink className="nav-item nav-link" to="/courses">
                     Courses
-                  </NavLink>
-                  <NavLink className="nav-item nav-link" to="/about">
-                    About
-                  </NavLink>
-                  {is_logged_in ? (
+                  </NavLink> }
+                  {userRole !=='none' &&
                     <NavLink className="nav-item nav-link" to="/profile">
                       Profile
-                    </NavLink>
-                  ) : (
+                    </NavLink> }
+                   {userRole ==="none"&& (
                     <NavLink className="nav-item nav-link" to="/login">
                       Login
                     </NavLink>
                   )}
 
-                  {user_role === "teacher" && (
+                  {userRole === "admin" && (
                     <NavLink className="nav-item nav-link" to="/register">
                       Register
                     </NavLink>
                   )}
-                  {user_role === "teacher" && (
+                  {userRole === "admin" && (
                     <NavLink className="nav-item nav-link" to="/create_course">
                       Create Course
                     </NavLink>
                   )}
-                  {user_role === "teacher" && (
+                  {userRole === "teacher" && (
                     <NavLink className="nav-item nav-link" to="/class_test">
                       Class Test
                     </NavLink>
                   )}
-                  {user_role === "teacher" && (
+                  {userRole === "teacher" && (
                     <NavLink className="nav-item nav-link" to="/present_system">
                       Present System
                     </NavLink>
                   )}
-                  {user_role === "student" && (
+                  {userRole === "teacher" && (
+                    <NavLink
+                      className="nav-item nav-link"
+                      to="/view_all_present"
+                    >
+                      All Present
+                    </NavLink>
+                  )}
+                  {userRole === "teacher" && (
+                    <NavLink className="nav-item nav-link" to="/view_all_mark">
+                      All Mark
+                    </NavLink>
+                  )}
+                  {userRole === "student" && (
                     <NavLink className="nav-item nav-link" to="/my_presents">
                       My Presents
                     </NavLink>
                   )}
-                  {user_role === "student" && (
+                  {userRole === "student" && (
                     <NavLink className="nav-item nav-link" to="/my_ct_marks">
                       Class Tests Marks
                     </NavLink>

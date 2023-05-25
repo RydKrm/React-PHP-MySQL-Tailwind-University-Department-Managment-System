@@ -111,6 +111,12 @@ const EditProfile = () => {
                         place="Research Field"
                         handle={onBlurChange}
                       ></SingleInput>
+                      <SingleInput
+                        type="file"
+                        name="image"
+                        place="Profile Picture"
+                        handle={onBlurChange}
+                      ></SingleInput>
 
                       <div className="col-md-12 mt-4 pt-2">
                         <SubmitButton
