@@ -11,8 +11,6 @@ const Home = () => {
         <Statistics></Statistics>
         <RoleInfo></RoleInfo>
         <SystemInfo></SystemInfo>
-
-     
       </div>
     );
 };

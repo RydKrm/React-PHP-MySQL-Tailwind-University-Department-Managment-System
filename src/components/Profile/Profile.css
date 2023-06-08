@@ -12,3 +12,7 @@
 .card-body{
     opacity: 1;
 }
+
+.table-bg tr{
+    background-color: #222629;
+}

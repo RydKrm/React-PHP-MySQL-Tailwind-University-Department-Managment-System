@@ -75,62 +75,50 @@ const PresentSystem = () => {
  // console.log("All students", students);
 
   return (
-    <section className="vh-100 gradient-custom">
-      <div className="container py-5 h-100">
-        <div className="row justify-content-center align-items-center h-100">
-          <div className="col-12 col-lg-9 col-xl-7">
-            <div className="card shadow-2-strong card-registration">
-              <div className="card-body p-4 p-md-5">
-                <h3
-                  className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
-                     text-4xl font-roboto font-normal animate-bounce "
-                >
-                  Present System
-                </h3>
-                <form method="post" onSubmit={onFormSubmit}>
-                  <div className="row">
-                    <div className="col-md-3"></div>
-                    <div className="col-md-5 mb-5 ml-7 d-flex align-items-center">
-                      <div className="form-outline datepicker w-100">
-                        <select
-                          name="Index"
-                          onChange={on_course_select}
-                          className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                        >
-                          <option>Select Course </option>
-                          {course.map((crs, index) => (
-                            <option
-                              className="font-roboto text-sky-700 "
-                              key={index}
-                              value={index}
-                            >
-                              {crs.course_name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div></div>
-                  <SubmitButton
-                    ButtonHandle={onFormSubmit}
-                    ButtonValue={"Submit"}
-                  ></SubmitButton>
-                </form>
-
-                <h2>{message}</h2>
-                {is_student && (
-                  <TablePresent
-                    present_adding={present_adding}
-                    onMarkSubmit={onMarkSubmit}
-                    students={students}
-                  ></TablePresent>
-                )}
-              </div>
+    <section className="flex flex-row content-center items-center  h-auto md:min-h-max justify-center border-y border-green font-roboto bg-image">
+      <div className="img-overlay w-full h-auto md:min-h-max flex items-center justify-center bg-dark-black opacity-95">
+        <div className="md:border border-green p-8 my-4 md:my-0 md:w-3/6 ">
+          <h2 className="text-3xl my-3 text-green text-center">
+            Present System
+          </h2>
+          <form
+            method="post"
+            className="flex flex-col items-center justify-center"
+            onSubmit={onFormSubmit}
+          >
+            <div>
+              <select
+                name="Index"
+                onChange={on_course_select}
+                className="font-roboto border-green border-b w-56  bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-5"
+              >
+                <option>Select Course </option>
+                {course.map((crs, index) => (
+                  <option
+                    className="font-roboto text-sky-700 "
+                    key={index}
+                    value={index}
+                  >
+                    {crs.course_name}
+                  </option>
+                ))}
+              </select>
             </div>
-          </div>
+            <input
+              className="btn font-roboto font-light w-40  text-neutral-400 hover:text-neutral-100 hover:border-white hover:bg-light-black bg-dark-black border-1 md:mb-10 mt-2 transition duration-0 hover:duration-700"
+              type="submit"
+              value="submit"
+            />
+          </form>
+
+          <h2>{message}</h2>
+          {is_student && (
+            <TablePresent
+              present_adding={present_adding}
+              onMarkSubmit={onMarkSubmit}
+              students={students}
+            ></TablePresent>
+          )}
         </div>
       </div>
     </section>
