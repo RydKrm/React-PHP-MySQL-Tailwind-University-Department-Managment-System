@@ -2,24 +2,37 @@ import './Course.css';
 import React from 'react';
 
 const Course = (props) => {
-   const { name, image, semistar, year, code, teacher1, teacher2 } =
-     props.course;
+   const {
+     course_name,
+     course_year,
+     course_semester,
+     course_code,
+     sec_a,
+     sec_b,
+   } = props.course;
    return (
-     <div className="col-md-4">
-       <div className="card text-size my-3">
-         <img className="card-img-top" src={image} alt="Teacher_image_here" />
-         <div className="card-body">
-           <ul className="list-group list-group-flush">
-             <li className="list-group-item">Name: {name}</li>
-             <li className="list-group-item">First Teacher: {teacher1} </li>
-             <li className="list-group-item">Second Teacher: {teacher2} </li>
-             <li className="list-group-item">
-               Course Code : {year}
-               {semistar}
-               {code}
-             </li>
-           </ul>
-         </div>
+     <div className="border-2 mt-3 border-green">
+       <div className="card text-size bg-dark-black my-3">
+         <ul className=" bg-dark-black font-roboto text-md text-center">
+           <li className="h-10 items-center text-base font-roboto text-neutral-300">
+             Course Name: {course_name}
+           </li>
+           <li className="h-10 items-center text-base font-roboto text-neutral-300">
+             Course Year: {course_year}
+           </li>
+           <li className="h-10 items-center text-base font-roboto text-neutral-300">
+             semester : {course_semester }
+           </li>
+           <li className="h-10 items-center text-base font-roboto text-neutral-300">
+             Course Code : {course_code}
+           </li>
+           <li className="h-10 items-center text-base font-roboto text-neutral-300">
+             Section A Teacher : {sec_a}
+           </li>
+           <li className="h-10 items-center text-base font-roboto text-neutral-300">
+             Section B Teacher : {sec_b}
+           </li>
+         </ul>
        </div>
      </div>
    );

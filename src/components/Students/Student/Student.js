@@ -1,25 +1,23 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 const Student = (props) => {
-  const { first_name, last_name, email, image,year,project,city } = props.student;
+  const { first_name, last_name,roll_number, email, phone } = props.student;
   return (
-    <div className="col-md-3">
-      <div className="card text-size my-3">
-        <img className="card-img-top" src={image} alt="Teacher_image_here" />
-        <div className="card-body">
-          
-        </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
+   <div className="border-2 mt-3 border-green">
+      <div className="card text-size bg-dark-black my-3">
+        <ul className=" bg-dark-black font-roboto text-md text-center">
+          <li className="h-10 items-center text-base font-roboto text-neutral-300">
             Name: {first_name} {last_name}
           </li>
-          <li className="list-group-item">Email : {email} </li>
-          <li className="list-group-item">Year : {year} </li>
-          <li className="list-group-item">Project: {project}</li>
-          <li className="list-group-item">City : {city} </li>
-          <li className="list-group-item"><NavLink to="/profile_single"
-           className="btn btn-primary">Visit Profile</NavLink></li>
+          <li className="h-10 items-center text-base font-roboto text-neutral-300">
+            Roll : {roll_number}
+          </li>
+          <li className="h-10 items-center text-base font-roboto text-neutral-300">
+            Email : {email}{" "}
+          </li>
+          <li className="h-10 items-center text-base font-roboto text-neutral-300">
+            Phone : {phone}{" "}
+          </li>
         </ul>
       </div>
     </div>

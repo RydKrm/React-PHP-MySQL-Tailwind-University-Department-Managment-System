@@ -48,157 +48,119 @@ const Create_course = () => {
 
 
     return (
-      <div>
-        <section className="vh-100 gradient-custom">
-          <div className="container py-5 h-100">
-            <div className="row justify-content-center align-items-center h-100">
-              <div className="col-12 col-lg-9 col-xl-7">
-                <div className="card shadow-2-strong card-registration">
-                  <div className="card-body p-4 p-md-5">
-                    <h3
-                      className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
-                     text-4xl font-roboto font-normal animate-bounce "
-                    >
-                      Create Course
-                    </h3>
-                    <form onSubmit={onSubmitChange} method="post">
-                      <div className="row">
-                        {/* course Name */}
-                        <div className="col-md-6 mb-4">
-                          <div className="form-outline">
-                            <input
-                              onChange={onContentChange}
-                              type="text"
-                              className="form-control form-control-lg input-bordered input-info text-sky-600 text-sm"
-                              name="course_name"
-                              placeholder="Course Name"
-                              required
-                            />
-                          </div>
-                        </div>
+      <section className="flex flex-row content-center items-center  h-auto md:h-screen justify-center border-y border-green font-roboto bg-image">
+        <div className="img-overlay w-full h-auto md:h-screen flex items-center justify-center bg-dark-black opacity-95">
+          <div className="md:border border-green p-8 my-4 md:my-0 md:w-3/6 ">
+            <h2 className="text-3xl my-3 text-green text-center">
+              Create Course
+            </h2>
+            <form
+              onSubmit={onSubmitChange}
+              className="flex flex-col items-center justify-center"
+              method="post"
+            >
+              <div className="row">
+                {/* course Name */}
 
-                        {/* Course Code */}
-                        <div className="col-md-6 mb-4">
-                          <div className="form-outline">
-                            <input
-                              onChange={onContentChange}
-                              type="text"
-                              name="course_code"
-                              placeholder="Course code"
-                              required
-                              className="form-control form-control-lg input-bordered input-info text-sky-600 text-sm"
-                            />
-                          </div>
-                        </div>
-                      </div>
+                <input
+                  onChange={onContentChange}
+                  type="text"
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                  name="course_name"
+                  placeholder="Course Name"
+                  required
+                />
 
-                      <div className="row">
-                        <div className="col-md-6 mb-4 pb-2">
-                          <select
-                            className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                            name="year"
-                            onChange={onContentChange}
-                          >
-                            <option> Select Year </option>
-                            <option
-                              value="1"
-                              className="font-roboto text-sky-700 "
-                            >
-                              First Year
-                            </option>
-                            <option
-                              value="2"
-                              className="font-roboto text-sky-700 "
-                            >
-                              Second Year
-                            </option>
-                            <option
-                              value="3"
-                              className="font-roboto text-sky-700 "
-                            >
-                              Third Year
-                            </option>
-                            <option
-                              value="4"
-                              className="font-roboto text-sky-700"
-                            >
-                              Fourth Year
-                            </option>
-                          </select>
-                        </div>
-                        <div className="col-md-6 mb-4 pb-2">
-                          <select
-                            className="select form-control-lg select-info w-full max-w-xs 
-                            hover:ring-1 duration-200 font-roboto text-sm font-light"
-                            name="semester"
-                            onChange={onContentChange}
-                          >
-                            <option> Select Course Semester </option>
-                            <option value="odd">Odd</option>
-                            <option value="even">Even</option>
-                          </select>
-                        </div>
+                {/* Course Code */}
+                <input
+                  onChange={onContentChange}
+                  type="text"
+                  name="course_code"
+                  placeholder="Course code"
+                  required
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                />
 
-                        <div className="col-md-6 mb-4 pb-2">
-                          <select
-                            className="select form-control-lg select-info w-full 
-                            hover:ring-1 duration-200 max-w-xs font-roboto text-sm font-light"
-                            name="sec_a_teacher"
-                            onChange={onContentChange}
-                          >
-                            <option> Select Teacher </option>
-                            {allTeacher.map((tec) => (
-                              <option
-                                className="font-roboto text-sky-700"
-                                value={tec.teacher_id}
-                                key={tec.teacher_id}
-                              >
-                                {tec.first_name} {tec.last_name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-
-                        <div className="col-md-6 mb-4 pb-2">
-                          <select
-                            className="select form-control-lg select-info 
-                            hover:ring-1 duration-200 w-full max-w-xs font-roboto text-sm font-light"
-                            name="sec_b_teacher"
-                            onChange={onContentChange}
-                          >
-                            <option className="font-roboto text-sky-700">
-                              Select Course Semester
-                            </option>
-                            {allTeacher.map((tec) => (
-                              <option
-                                className="font-roboto text-sky-700"
-                                value={tec.teacher_id}
-                                key={tec.teacher_id}
-                              >
-                                {tec.first_name} {tec.last_name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="mt-4 pt-2">
-                        <SubmitButton
-                         // ButtonHandle={onFormSubmit}
-                          ButtonValue={"Create"}
-                        ></SubmitButton>
-
-                        <h2>{message}</h2>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                <select
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                  name="year"
+                  onChange={onContentChange}
+                >
+                  <option> Select Year </option>
+                  <option value="1" className="font-roboto text-sky-700 ">
+                    First Year
+                  </option>
+                  <option value="2" className="font-roboto text-sky-700 ">
+                    Second Year
+                  </option>
+                  <option value="3" className="font-roboto text-sky-700 ">
+                    Third Year
+                  </option>
+                  <option value="4" className="font-roboto text-sky-700">
+                    Fourth Year
+                  </option>
+                </select>
               </div>
-            </div>
+
+              <div className="row">
+                <select
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                  name="semester"
+                  onChange={onContentChange}
+                >
+                  <option> Select Course Semester </option>
+                  <option value="odd">Odd</option>
+                  <option value="even">Even</option>
+                </select>
+
+                <select
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                  name="sec_a_teacher"
+                  onChange={onContentChange}
+                >
+                  <option> Select Teacher </option>
+                  {allTeacher.map((tec) => (
+                    <option
+                      className="font-roboto text-sky-700"
+                      value={tec.teacher_id}
+                      key={tec.teacher_id}
+                    >
+                      {tec.first_name} {tec.last_name}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                  name="sec_b_teacher"
+                  onChange={onContentChange}
+                >
+                  <option className="font-roboto text-sky-700">
+                    Select Course Semester
+                  </option>
+                  {allTeacher.map((tec) => (
+                    <option
+                      className="font-roboto text-sky-700"
+                      value={tec.teacher_id}
+                      key={tec.teacher_id}
+                    >
+                      {tec.first_name} {tec.last_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mt-4 pt-2">
+                <SubmitButton
+                  // ButtonHandle={onFormSubmit}
+                  ButtonValue={"Create"}
+                ></SubmitButton>
+
+                <h2>{message}</h2>
+              </div>
+            </form>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     );
 };
 

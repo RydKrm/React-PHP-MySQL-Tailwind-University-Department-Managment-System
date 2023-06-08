@@ -87,80 +87,57 @@ const MyClassTestMarks = () => {
   };
 
   return (
-    <section className="vh-100 gradient-custom">
-      <div className="container py-5 h-100">
-        <div className="row justify-content-center align-items-center h-100">
-          <div className="col-12 col-lg-9 col-xl-7">
-            <div className="card shadow-2-strong card-registration">
-              <div className="card-body p-4 p-md-5">
-                <h3
-                  className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
-                     text-4xl font-roboto font-normal animate-bounce "
-                >
-                  Class Test Marks
-                </h3>
-                <form>
-                  <div className="row">
-                    <div className="col-md-6 mb-6 d-flex align-items-center">
-                      <div className="form-outline datepicker w-100">
-                        <SelectOption
-                          handle_option={on_year_select}
-                          name={"year"}
-                          options={[
-                            ["1", "First Year"],
-                            ["2", "Second Year"],
-                            ["3", "Third Year"],
-                            ["4", "fourth Year"],
-                          ]}
-                        ></SelectOption>
-                      </div>
-                    </div>
-                    <div className="col-md-6 mb-6 d-flex align-items-center">
-                      <div className="form-outline datepicker w-100">
-                        <SelectOption
-                          handle_option={on_semester_select}
-                          name={"semester"}
-                          options={[
-                            ["odd", "Odd"],
-                            ["even", "Even"],
-                          ]}
-                        ></SelectOption>
-                      </div>
-                    </div>
-
-                    {have_course && (
-                      <div className="col-md-6 mb-6 d-flex align-items-center">
-                        <div className="form-outline datepicker w-100">
-                          <select
-                            name="course"
-                            onChange={on_course_select}
-                            className="select form-control-lg select-info w-full max-w-xs font-roboto 
-                                       text-sm font-light hover:ring-1 duration-200 "
-                          >
-                            <option value="">Select Course </option>
-                            {course.map((crs, index) => (
-                              <option key={index} value={index}>
-                                {crs.course_name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <SubmitButton 
-                  ButtonHandle={on_course_submit} 
-                  ButtonValue={"Submit"}>                 
-                  </SubmitButton>
-                </form>
-
-                <h2>{message}</h2>
-                {is_ct && (
-                  <ClassTestTable class_test={class_test}></ClassTestTable>
-                )}
-              </div>
+    <section className="flex flex-row content-center items-center  h-auto md:h-screen justify-center border-y border-green font-roboto bg-image">
+      <div className="img-overlay w-full h-auto md:h-screen flex items-center justify-center bg-dark-black opacity-95">
+        <div className="md:border border-green p-8 my-4 md:my-0 md:w-3/6 ">
+          <h2 className="text-3xl my-3 text-green text-center">
+            Class Test Marks
+          </h2>
+          <form className="flex flex-col items-center justify-center">
+            <div>
+              <SelectOption
+                handle_option={on_year_select}
+                name={"year"}
+                options={[
+                  ["1", "First Year"],
+                  ["2", "Second Year"],
+                  ["3", "Third Year"],
+                  ["4", "fourth Year"],
+                ]}
+              ></SelectOption>
+              <SelectOption
+                handle_option={on_semester_select}
+                name={"semester"}
+                options={[
+                  ["odd", "Odd"],
+                  ["even", "Even"],
+                ]}
+              ></SelectOption>
             </div>
-          </div>
+            <div>
+              {have_course && (
+                <select
+                  name="course"
+                  onChange={on_course_select}
+                  className="font-roboto border-green border-b w-40  bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3 mx-3"
+                >
+                  <option value="">Select Course </option>
+                  {course.map((crs, index) => (
+                    <option key={index} value={index}>
+                      {crs.course_name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+            <SubmitButton
+              ButtonHandle={on_course_submit}
+              ButtonValue={"Submit"}
+            ></SubmitButton>
+          </form>
+
+          <h2>{message}</h2>
+          {is_ct && <ClassTestTable class_test={class_test}></ClassTestTable>}
         </div>
       </div>
     </section>

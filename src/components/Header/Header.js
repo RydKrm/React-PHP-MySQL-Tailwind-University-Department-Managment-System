@@ -33,7 +33,7 @@ const Header = () => {
                     Home
                   </NavLink>
                   {userRole === "admin" && (
-                    <NavLink className="nav-item nav-link bg-green " to="/teachers">
+                    <NavLink className="nav-item nav-link" to="/teachers">
                       Teachers
                     </NavLink>
                   )}

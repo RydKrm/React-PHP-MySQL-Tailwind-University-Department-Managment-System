@@ -37,142 +37,119 @@ const Login = () => {
   }
 
     return (
-      <div>
-        <section className="vh-100 gradient-custom">
-          <div className="container py-5 h-100 px-20">
-            <div className="row justify-content-center align-items-center h-100">
-              <div className="col-12 col-lg-9 col-xl-7">
-                <div className="card shadow-2-strong card-registration">
-                  <div className="card-body p-4 p-md-5">
-                    <h3
-                      className="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-primary 
-                     text-4xl font-roboto font-bold "
-                    >
-                      Login Form
-                    </h3>
+      <section className="flex flex-row content-center items-center  h-auto md:h-screen justify-center border-y border-green font-roboto bg-image">
+        <div className="img-overlay w-full h-auto md:h-screen flex items-center justify-center bg-dark-black opacity-95">
+          <div className="md:border border-green p-8 my-4 md:my-0 md:w-3/6 ">
+            <h2 className="text-3xl my-3 text-green text-center">Login</h2>
 
-                    <form
-                      onSubmit={onSubmitChange}
-                      method="post"
-                      className="px-20"
-                    >
-                      <div className="row">
-                        <div className="col-md-12 mb-4 pb-2">
-                          <div className="form-outline">
-                            <input
-                              type="text"
-                              onChange={onChangeItem}
-                              placeholder="Roll Number"
-                              id="RollNumber"
-                              name="roll_number"
-                              className="form-control form-control-lg font-roboto input-info input-bordered text-info text-base font-thin
-                               "
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12 mb-4 pb-2">
-                          <div className="form-outline">
-                            <input
-                              type="password"
-                              onChange={onChangeItem}
-                              placeholder="PassWord"
-                              id="password"
-                              name="password"
-                              className="form-control form-control-lg font-roboto input-info input-bordered text-info text-base font-thin
-                               "
-                            />
-                            <div className="col-md-12 mb-4">
-                              <div className="form-check form-check-inline mt-4">
-                                <h6 className="mr-2 font-roboto text-lg">
-                                  Role
-                                </h6>
-                                <input
-                                  onChange={onChangeItem}
-                                  className="form-check-input radio radio-info"
-                                  type="radio"
-                                  name="role"
-                                  value="teacher"
-                                />
-                                <label className="form-check-label font-roboto text-base mr-3">
-                                  Teacher
-                                </label>
+            <form
+              onSubmit={onSubmitChange}
+              method="post"
+              className="flex flex-col items-center justify-center"
+            >
+              <div>
+                <input
+                  type="text"
+                  onChange={onChangeItem}
+                  placeholder="Enter Roll Number"
+                  id="RollNumber"
+                  name="roll_number"
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                />
 
-                                <input
-                                  onChange={onChangeItem}
-                                  className="form-check-input radio radio-info"
-                                  type="radio"
-                                  name="role"
-                                  value="student"
-                                />
-                                <label className="form-check-label font-roboto text-base mr-3">
-                                  Student
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                <input
+                  type="password"
+                  onChange={onChangeItem}
+                  placeholder="Enter  Password"
+                  id="password"
+                  name="password"
+                  className="font-roboto mt-4 border-green border-b mx-3 w-40 bg-dark-black text-sm font-thin text-neutral-400 focus:ring-green focus:bg-dark-black p-2 transition duration-0 hover:duration-700 hover:bg-medium-black focus:border focus:rounded-sm h-10 focus:outline-none my-3"
+                />
+                <div className="col-md-12 mb-4 ml-14">
+                  <div className="form-check form-check-inline mt-4">
+                    <h6 className="mr-2 font-roboto text-lg text-neutral-300">
+                      Role
+                    </h6>
+                    <input
+                      onChange={onChangeItem}
+                      className="form-check-input radio radio-info"
+                      type="radio"
+                      name="role"
+                      value="teacher"
+                    />
+                    <label className="form-check-label font-roboto text-base mr-3 text-neutral-300">
+                      Teacher
+                    </label>
 
-                      <div>
-                        <input
-                          className="btn btn-info btn-lg font-roboto text-lg font-light text-white "
-                          htmlFor="login-modal"
-                          type="submit"
-                          value="Login"
-                        />
-
-                        {is_message && (
-                          <div className="alert alert-info shadow-lg">
-                            <div>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="stroke-current flex-shrink-0 w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                              </svg>
-                              <span> Login is successful</span>
-                            </div>
-                     
-                            {!is_message && (
-                              <div className="alert alert-error shadow-lg">
-                                <div>
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="stroke-current flex-shrink-0 h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="2"
-                                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
-                                  </svg>
-                                  <span>Error! Task failed successfully.</span>
-                                </div>
-                              </div>
-                              
-                            )}
-                            {/* end not successful */}
-                          </div>
-                        )}
-                      </div>
-                    </form>
+                    <input
+                      onChange={onChangeItem}
+                      className="form-check-input radio radio-info"
+                      type="radio"
+                      name="role"
+                      value="student"
+                    />
+                    <label className="form-check-label font-roboto text-base mr-3 text-neutral-300">
+                      Student
+                    </label>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div>
+                <input
+                  className="btn font-roboto font-light w-40  text-neutral-400 hover:text-neutral-100 hover:border-white hover:bg-light-black bg-dark-black border-1 md:mb-10 mt-2 transition duration-0 hover:duration-700"
+                  htmlFor="login-modal"
+                  type="submit"
+                  value="Login"
+                />
+
+                {is_message && (
+                  <div className="alert alert-info shadow-lg">
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="stroke-current flex-shrink-0 w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                      <span> Login is successful</span>
+                    </div>
+
+                    {!is_message && (
+                      <div className="alert alert-error shadow-lg">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="stroke-current flex-shrink-0 h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span>Error! Task failed successfully.</span>
+                        </div>
+                      </div>
+                    )}
+                    {/* end not successful */}
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     );
 };
 
