@@ -14,9 +14,7 @@ const RoleInfo = () => {
             <MdOutlineAdminPanelSettings className="text-8xl role-icon  text-green rounded-xl font-light m-2 p-2 ml-10 mr-10" />
             <h2 className="text-2xl text-green font-normal">ADMIN</h2>
             <p className="text-sm m-3 tracking-wide leading-6 font-extralight text-light-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              temporibus molestias modi mollitia culpa quae eligendi repellendus
-              dolores dolorum nihil.
+              Admin could control everything in a website. In this system admin can see all student list,all course list, all teacher list. And also Create course which is created by year, semester, course code, and existing teacher list. 
             </p>
           </div>
 
@@ -25,9 +23,8 @@ const RoleInfo = () => {
             <MdOutlineNaturePeople className="text-8xl role-icon text-green rounded-3xl font-light m-2 p-2 ml-10 mr-10" />
             <h2 className="text-2xl text-green font-normal">TEACHERS </h2>
             <p className="text-sm m-3 tracking-wide leading-6 font-extralight text-light-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              temporibus molestias modi mollitia culpa quae eligendi repellendus
-              dolores dolorum nihil.
+              Teachers are another part of system. He could add class test mark in course specific. He also could add present of course checking student present or not.
+              He could see all student mark and all teacher mark.
             </p>
           </div>
           {/* item - 3 */}
@@ -35,9 +32,7 @@ const RoleInfo = () => {
             <IoIosPeople className="text-8xl role-icon text-green rounded-3xl font-light m-2 p-2 ml-10 mr-10" />
             <h2 className="text-2xl text-green font-normal">STUDENTS </h2>
             <p className="text-sm m-3 tracking-wide leading-6 font-extralight text-light-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              temporibus molestias modi mollitia culpa quae eligendi repellendus
-              dolores dolorum nihil.
+              Student is lower part of this system. He cannot add or mordify the system. He only view their present and class test mark. In a Course many class text are taken but total mark is 14. So All mark are converted to 14. 
             </p>
           </div>
         </div>

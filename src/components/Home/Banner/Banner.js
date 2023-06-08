@@ -1,9 +1,11 @@
 import './Banner.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import { UserContext } from '../../../App';
 
 const Banner = () => {
+   const [checkUser, setCheckUser] = useContext(UserContext);
+    const userRole = checkUser.userRole;
     return (
       <div id="intro-example" className="p-5 text-center bg-black">
         <div className="mask hero_color ">
@@ -15,18 +17,46 @@ const Banner = () => {
               <h5 className="my-5 ml-12">
                 Best & free guide of responsive web design
               </h5>
-              <Link
-                className="items-center mt-3 text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 ml-5 hover:no-underline hover:bg-medium-black m-2 ring-1 ring-primary-content"
-                to="/"
-              >
-                Present System
-              </Link>
-              <Link
-                className="mt-3 items-center text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 hover:no-underline hover:bg-medium-black m-2 ring-1 ring-primary-content"
-                to="/"
-              >
-                Mark Distribution
-              </Link>
+              {userRole === "none" && (
+                <Link
+                  className="items-center mt-3 text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 ml-5 hover:no-underline hover:bg-medium-black m-2 ring-1 ring-primary-content"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              )}
+              {userRole === "student" && (
+                <Link
+                  className="items-center mt-3 text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 hover:no-underline mr-2 hover:bg-medium-black my-2 ring-1 ring-primary-content"
+                  to="/my_presents"
+                >
+                  Course Present
+                </Link>
+              )}
+              {userRole === "student" && (
+                <Link
+                  className="items-center mt-3 text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 hover:no-underline hover:bg-medium-black my-2 ring-1 ring-primary-content"
+                  to="/my_ct_marks"
+                >
+                  Class Test Mark
+                </Link>
+              )}
+              {userRole === "teacher" && (
+                <Link
+                  className="items-center mt-3 text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 hover:no-underline hover:bg-medium-black my-2 mr-3 ring-1 ring-primary-content"
+                  to="/class_test"
+                >
+                  Class Test Mark
+                </Link>
+              )}
+              {userRole === "teacher" && (
+                <Link
+                  className="items-center mt-3 text-white font-roboto bg-green text-xl p-2 rounded-lg px-3 py-3 hover:no-underline hover:bg-medium-black my-2 ring-1 ring-primary-content"
+                  to="/present_system"
+                >
+                  Present System
+                </Link>
+              )}
             </div>
           </div>
         </div>

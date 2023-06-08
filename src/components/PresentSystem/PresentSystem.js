@@ -75,8 +75,8 @@ const PresentSystem = () => {
  // console.log("All students", students);
 
   return (
-    <section className="flex flex-row content-center items-center  h-auto md:min-h-max justify-center border-y border-green font-roboto bg-image">
-      <div className="img-overlay w-full h-auto md:min-h-max flex items-center justify-center bg-dark-black opacity-95">
+    <section className="flex flex-row content-center items-center  h-auto md:h-screen justify-center border-y border-green font-roboto bg-image">
+      <div className="img-overlay w-full h-auto md:h-screen flex items-center justify-center bg-dark-black opacity-95">
         <div className="md:border border-green p-8 my-4 md:my-0 md:w-3/6 ">
           <h2 className="text-3xl my-3 text-green text-center">
             Present System
