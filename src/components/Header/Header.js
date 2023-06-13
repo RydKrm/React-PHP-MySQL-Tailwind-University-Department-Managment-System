@@ -13,7 +13,10 @@ const Header = () => {
         {
           <nav className="navbar navbar-expand-lg bg-black">
             <div className="container">
-              <NavLink className="navbar-brand text-green text-2xl font-roboto" to="/home">
+              <NavLink
+                className="navbar-brand text-green text-2xl font-roboto"
+                to="/home"
+              >
                 ICE
               </NavLink>
               <button
@@ -29,7 +32,10 @@ const Header = () => {
               </button>
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                  <NavLink className="nav-item nav-link active font-oxygen" to="/home">
+                  <NavLink
+                    className="nav-item nav-link active font-oxygen"
+                    to="/home"
+                  >
                     Home
                   </NavLink>
                   {userRole === "admin" && (
@@ -37,20 +43,30 @@ const Header = () => {
                       Teachers
                     </NavLink>
                   )}
-                  
-                  {userRole==="admin" && <NavLink className="nav-item nav-link" to="/students">
-                    Students
-                  </NavLink> }
-                 {userRole==="admin" && <NavLink className="nav-item nav-link" to="/courses">
-                    Courses
-                  </NavLink> }
-                  {userRole !=='none' &&
+
+                  {userRole === "admin" && (
+                    <NavLink className="nav-item nav-link" to="/students">
+                      Students
+                    </NavLink>
+                  )}
+                  {userRole === "admin" && (
+                    <NavLink className="nav-item nav-link" to="/courses">
+                      Courses
+                    </NavLink>
+                  )}
+                  {userRole !== "none" && (
                     <NavLink className="nav-item nav-link" to="/profile">
                       Profile
-                    </NavLink> }
-                   {userRole ==="none"&& (
+                    </NavLink>
+                  )}
+                  {userRole === "none" && (
                     <NavLink className="nav-item nav-link" to="/login">
                       Login
+                    </NavLink>
+                  )}
+                  {userRole === "none" && (
+                    <NavLink className="nav-item nav-link" to="/register">
+                      Register
                     </NavLink>
                   )}
 
